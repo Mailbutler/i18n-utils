@@ -68,7 +68,7 @@ function* getMatches(file: SimpleFile, regExp: RegExp, captureGroup = 1): Iterab
  * @returns a list of translation keys found in `file`.
  */
 function extractMethodMatches(file: SimpleFile): I18NItemWithBounding[] {
-  const methodRegExp = /(?:[$\s.:"'`+\(\[\{]t[cm]?)\(\s*?(["'`])((?:[^\\]|\\.)*?)\1/g;
+  const methodRegExp = /(?:[$\s.:"'`+\(\[\{]t[cmt]?)\(\s*?(["'`])((?:[^\\]|\\.)*?)\1/g;
   return [...getMatches(file, methodRegExp, 2)];
 }
 
