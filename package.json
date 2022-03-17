@@ -1,7 +1,7 @@
 {
   "name": "@mailbutler/i18n-utils",
   "description": "Manage i18n localization with static analysis",
-  "version": "2.0.4",
+  "version": "1.0.0",
   "scripts": {
     "build": "rm -fr dist && microbundle --target node -f umd,modern",
     "dev": "microbundle watch --target node",
@@ -10,7 +10,8 @@
     "demo:debug": "node ./bin/vue-i18n-extract.js report --srcFiles './tests/fixtures/src-files/**/*.?(vue|js)' --languageFiles './tests/fixtures/lang/**/*.?(json|yaml|yml|js)'",
     "test": "jest",
     "test:dev": "jest --watch",
-    "lint": "eslint **/*.ts"
+    "lint": "eslint **/*.ts",
+    "prettier": "prettier --write \"{src,tests}/**/*.{vue,ts,js,scss}\" ./*.{vue,ts,js,scss}"
   },
   "license": "MIT",
   "source": "src/index.ts",
@@ -53,9 +54,11 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.25.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.0.6",
     "jest-config": "^27.0.6",
     "microbundle": "^0.13.0",
+    "prettier": "2.4.1",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.5",
     "typescript": "^4.2.4"

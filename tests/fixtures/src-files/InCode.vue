@@ -3,12 +3,12 @@ import { useI18n } from 'vue-i18n';
 
 export default {
   name: 'ex3',
-  data () {
+  data() {
     return {
-      translation: $t('header.title'),
-    }
+      translation: $t('header.title')
+    };
   },
-  setup () {
+  setup() {
     const { t } = useI18n();
 
     const title = t('header.title');
@@ -18,10 +18,10 @@ export default {
     return {
       t,
       title,
-      dynamicKey,
-    }
+      dynamicKey
+    };
   }
-}
+};
 </script>
 
 <template>
@@ -31,7 +31,7 @@ export default {
     <p>{{ translation }}</p>
 
     <p>{{ t('header.title') }}</p>
-    <p>{{ t("content.paragraph.p_1", { count: "two" }) }}</p>
+    <p>{{ t('content.paragraph.p_1', { count: 'two' }) }}</p>
     <p>{{ tc(`content.paragraph.p.2`, 2) }}</p>
   </div>
 </template>

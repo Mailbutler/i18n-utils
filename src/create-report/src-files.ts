@@ -1,7 +1,7 @@
-import { SimpleFile, I18NItemWithBounding } from "../types";
-import isValidGlob from "is-valid-glob";
-import glob from "glob";
-import fs from "fs";
+import { SimpleFile, I18NItemWithBounding } from '../types';
+import isValidGlob from 'is-valid-glob';
+import glob from 'glob';
+import fs from 'fs';
 
 export function readSrcFiles(src: string): SimpleFile[] {
   if (!isValidGlob(src)) {
@@ -11,20 +11,16 @@ export function readSrcFiles(src: string): SimpleFile[] {
   const targetFiles = glob.sync(src);
 
   if (targetFiles.length === 0) {
-    throw new Error("srcFiles glob has no files.");
+    throw new Error('srcFiles glob has no files.');
   }
 
   return targetFiles.map((f) => {
-    const fileName = f.replace(process.cwd(), ".");
-    return { fileName, path: f, content: fs.readFileSync(f, "utf8") };
+    const fileName = f.replace(process.cwd(), '.');
+    return { fileName, path: f, content: fs.readFileSync(f, 'utf8') };
   });
 }
 
-function* getMatches(
-  file: SimpleFile,
-  regExp: RegExp,
-  captureGroup = 1
-): IterableIterator<I18NItemWithBounding> {
+function* getMatches(file: SimpleFile, regExp: RegExp, captureGroup = 1): IterableIterator<I18NItemWithBounding> {
   while (true) {
     const match = regExp.exec(file.content);
     if (match === null) {
@@ -36,14 +32,13 @@ function* getMatches(
     const previousCharacter = file.content.charAt(pathAtIndex - 1);
     const nextCharacter = file.content.charAt(pathAtIndex + path.length);
 
-    const line =
-      (file.content.substring(0, match.index).match(/\n/g) || []).length + 1;
+    const line = (file.content.substring(0, match.index).match(/\n/g) || []).length + 1;
     yield {
       path,
       previousCharacter,
       nextCharacter,
       file: file.fileName,
-      line,
+      line
     };
   }
 }
@@ -73,14 +68,12 @@ function* getMatches(
  * @returns a list of translation keys found in `file`.
  */
 function extractMethodMatches(file: SimpleFile): I18NItemWithBounding[] {
-  const methodRegExp =
-    /(?:[$\s.:"'`+\(\[\{]t[cm]?)\(\s*?(["'`])((?:[^\\]|\\.)*?)\1/g;
+  const methodRegExp = /(?:[$\s.:"'`+\(\[\{]t[cm]?)\(\s*?(["'`])((?:[^\\]|\\.)*?)\1/g;
   return [...getMatches(file, methodRegExp, 2)];
 }
 
 function extractComponentMatches(file: SimpleFile): I18NItemWithBounding[] {
-  const componentRegExp =
-    /(?:<(?:i18n|Translation))(?:.|\n)*?(?:[^:]path=("|'))((?:[^\\]|\\.)*?)\1/gi;
+  const componentRegExp = /(?:<(?:i18n|Translation))(?:.|\n)*?(?:[^:]path=("|'))((?:[^\\]|\\.)*?)\1/gi;
   return [...getMatches(file, componentRegExp, 2)];
 }
 
@@ -89,19 +82,12 @@ function extractDirectiveMatches(file: SimpleFile): I18NItemWithBounding[] {
   return [...getMatches(file, directiveRegExp)];
 }
 
-export function extractI18NItemsFromSrcFiles(
-  sourceFiles: SimpleFile[]
-): I18NItemWithBounding[] {
+export function extractI18NItemsFromSrcFiles(sourceFiles: SimpleFile[]): I18NItemWithBounding[] {
   return sourceFiles.reduce((accumulator, file) => {
     const methodMatches = extractMethodMatches(file);
     const componentMatches = extractComponentMatches(file);
     const directiveMatches = extractDirectiveMatches(file);
-    return [
-      ...accumulator,
-      ...methodMatches,
-      ...componentMatches,
-      ...directiveMatches,
-    ];
+    return [...accumulator, ...methodMatches, ...componentMatches, ...directiveMatches];
   }, [] as I18NItemWithBounding[]);
 }
 

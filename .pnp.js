@@ -56,6 +56,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-config", "virtual:894ec57225c25e50dab5ef970712ca354146bc28e94e3795154a28463a0f503869b63394afb6b461759394b8bb5a74900caf1357abbaa8655a27ca18537db38b#npm:27.0.6"],
             ["js-yaml", "npm:4.1.0"],
             ["microbundle", "npm:0.13.0"],
+            ["prettier", "npm:2.4.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:894ec57225c25e50dab5ef970712ca354146bc28e94e3795154a28463a0f503869b63394afb6b461759394b8bb5a74900caf1357abbaa8655a27ca18537db38b#npm:27.0.5"],
             ["typescript", "patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"]
@@ -3514,6 +3515,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-config", "virtual:894ec57225c25e50dab5ef970712ca354146bc28e94e3795154a28463a0f503869b63394afb6b461759394b8bb5a74900caf1357abbaa8655a27ca18537db38b#npm:27.0.6"],
             ["js-yaml", "npm:4.1.0"],
             ["microbundle", "npm:0.13.0"],
+            ["prettier", "npm:2.4.1"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:894ec57225c25e50dab5ef970712ca354146bc28e94e3795154a28463a0f503869b63394afb6b461759394b8bb5a74900caf1357abbaa8655a27ca18537db38b#npm:27.0.5"],
             ["typescript", "patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"]
@@ -9709,6 +9711,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/prelude-ls-npm-1.2.1-3e4d272a55-bc1649f521.zip/node_modules/prelude-ls/",
           "packageDependencies": [
             ["prelude-ls", "npm:1.2.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["prettier", [
+        ["npm:2.4.1", {
+          "packageLocation": "./.yarn/cache/prettier-npm-2.4.1-623aac91ee-d72ebe3344.zip/node_modules/prettier/",
+          "packageDependencies": [
+            ["prettier", "npm:2.4.1"]
           ],
           "linkType": "HARD",
         }]

@@ -6,7 +6,7 @@ import yaml from 'js-yaml';
 import isValidGlob from 'is-valid-glob';
 import { SimpleFile, I18NLanguage, I18NItem } from '../types';
 
-export function readLanguageFiles (src: string): SimpleFile[] {
+export function readLanguageFiles(src: string): SimpleFile[] {
   if (!isValidGlob(src)) {
     throw new Error(`languageFiles isn't a valid glob pattern.`);
   }
@@ -17,7 +17,7 @@ export function readLanguageFiles (src: string): SimpleFile[] {
     throw new Error('languageFiles glob has no files.');
   }
 
-  return targetFiles.map(f => {
+  return targetFiles.map((f) => {
     const langPath = path.resolve(process.cwd(), f);
 
     const extension = langPath.substring(langPath.lastIndexOf('.')).toLowerCase();
@@ -39,7 +39,10 @@ export function readLanguageFiles (src: string): SimpleFile[] {
   });
 }
 
-export function extractI18NLanguageFromLanguageFiles (languageFiles: SimpleFile[], dot: DotObject.Dot = Dot): I18NLanguage {
+export function extractI18NLanguageFromLanguageFiles(
+  languageFiles: SimpleFile[],
+  dot: DotObject.Dot = Dot
+): I18NLanguage {
   return languageFiles.reduce((accumulator, file) => {
     const language = file.fileName.substring(file.fileName.lastIndexOf('/') + 1, file.fileName.lastIndexOf('.'));
 
@@ -52,7 +55,7 @@ export function extractI18NLanguageFromLanguageFiles (languageFiles: SimpleFile[
       accumulator[language].push({
         path: key,
         file: file.fileName,
-        line: index,
+        line: index
       });
     });
 
@@ -60,12 +63,16 @@ export function extractI18NLanguageFromLanguageFiles (languageFiles: SimpleFile[
   }, {});
 }
 
-export function writeMissingToLanguageFiles (parsedLanguageFiles: SimpleFile[], missingKeys: I18NItem[], dot: DotObject.Dot = Dot): void {
-  parsedLanguageFiles.forEach(languageFile => {
+export function writeMissingToLanguageFiles(
+  parsedLanguageFiles: SimpleFile[],
+  missingKeys: I18NItem[],
+  dot: DotObject.Dot = Dot
+): void {
+  parsedLanguageFiles.forEach((languageFile) => {
     const languageFileContent = JSON.parse(languageFile.content);
 
-    missingKeys.forEach(item => {
-      if (item.language && languageFile.fileName.includes(item.language) || !item.language) {
+    missingKeys.forEach((item) => {
+      if ((item.language && languageFile.fileName.includes(item.language)) || !item.language) {
         dot.str(item.path, '', languageFileContent);
       }
     });
@@ -74,11 +81,15 @@ export function writeMissingToLanguageFiles (parsedLanguageFiles: SimpleFile[], 
   });
 }
 
-export function removeUnusedFromLanguageFiles (parsedLanguageFiles: SimpleFile[], unusedKeys: I18NItem[], dot: DotObject.Dot = Dot): void {
-  parsedLanguageFiles.forEach(languageFile => {
+export function removeUnusedFromLanguageFiles(
+  parsedLanguageFiles: SimpleFile[],
+  unusedKeys: I18NItem[],
+  dot: DotObject.Dot = Dot
+): void {
+  parsedLanguageFiles.forEach((languageFile) => {
     const languageFileContent = JSON.parse(languageFile.content);
 
-    unusedKeys.forEach(item => {
+    unusedKeys.forEach((item) => {
       if (item.language && languageFile.fileName.includes(item.language)) {
         dot.delete(item.path, languageFileContent);
       }
@@ -88,25 +99,25 @@ export function removeUnusedFromLanguageFiles (parsedLanguageFiles: SimpleFile[]
   });
 }
 
-function writeLanguageFile (languageFile: SimpleFile, newLanguageFileContent: unknown) {
+function writeLanguageFile(languageFile: SimpleFile, newLanguageFileContent: unknown) {
   const fileExtension = languageFile.fileName.substring(languageFile.fileName.lastIndexOf('.') + 1);
-    const filePath = languageFile.path;
-    const stringifiedContent = JSON.stringify(newLanguageFileContent, null, 2);
+  const filePath = languageFile.path;
+  const stringifiedContent = JSON.stringify(newLanguageFileContent, null, 2);
 
-    if (fileExtension === 'json') {
-      fs.writeFileSync(filePath, stringifiedContent);
-    } else if (fileExtension === 'js') {
-      const jsFile = `module.exports = ${stringifiedContent}; \n`;
-      fs.writeFileSync(filePath, jsFile);
-    } else if (fileExtension === 'yaml' || fileExtension === 'yml') {
-      const yamlFile = yaml.dump(newLanguageFileContent);
-      fs.writeFileSync(filePath, yamlFile);
-    } else {
-      throw new Error(`Language filetype of ${fileExtension} not supported.`)
-    }
+  if (fileExtension === 'json') {
+    fs.writeFileSync(filePath, stringifiedContent);
+  } else if (fileExtension === 'js') {
+    const jsFile = `module.exports = ${stringifiedContent}; \n`;
+    fs.writeFileSync(filePath, jsFile);
+  } else if (fileExtension === 'yaml' || fileExtension === 'yml') {
+    const yamlFile = yaml.dump(newLanguageFileContent);
+    fs.writeFileSync(filePath, yamlFile);
+  } else {
+    throw new Error(`Language filetype of ${fileExtension} not supported.`);
+  }
 }
 
 // This is a convenience function for users implementing in their own projects, and isn't used internally
-export function parselanguageFiles (languageFiles: string, dot: DotObject.Dot = Dot): I18NLanguage {
+export function parselanguageFiles(languageFiles: string, dot: DotObject.Dot = Dot): I18NLanguage {
   return extractI18NLanguageFromLanguageFiles(readLanguageFiles(languageFiles), dot);
 }

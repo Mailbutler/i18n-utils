@@ -1,7 +1,12 @@
 import path from 'path';
 import fs from 'fs';
 import dot from 'dot-object';
-import { readLanguageFiles, writeMissingToLanguageFiles, removeUnusedFromLanguageFiles, parselanguageFiles } from '@/create-report/language-files';
+import {
+  readLanguageFiles,
+  writeMissingToLanguageFiles,
+  removeUnusedFromLanguageFiles,
+  parselanguageFiles
+} from '@/create-report/language-files';
 import { expectedFromParsedLanguageFiles, expectedI18NReport } from '../../fixtures/expected-values';
 import { languageFiles } from '../../fixtures/resolved-sources';
 
@@ -47,5 +52,4 @@ describe('file: create-report/language-files', () => {
       expect(writeFileSyncSpy.mock.calls[0][1]).not.toContain('unused');
     });
   });
-})
-
+});
