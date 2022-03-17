@@ -1,13 +1,13 @@
 {
-  "name": "vue-i18n-extract",
-  "description": "Manage vue-i18n localization with static analysis",
+  "name": "@mailbutler/i18n-utils",
+  "description": "Manage i18n localization with static analysis",
   "version": "2.0.4",
   "scripts": {
     "build": "rm -fr dist && microbundle --target node -f umd,modern",
     "dev": "microbundle watch --target node",
-    "demo": "node ./bin/vue-i18n-extract.js report --srcFiles './tests/fixtures/vue-files/**/*.?(vue)' --languageFiles './tests/fixtures/lang/**/*.?(json|yaml|yml|js)'",
+    "demo": "node ./bin/vue-i18n-extract.js report --srcFiles './tests/fixtures/src-files/**/*.?(vue)' --languageFiles './tests/fixtures/lang/**/*.?(json|yaml|yml|js)'",
     "vue-i18n-extract": "node ./bin/vue-i18n-extract.js",
-    "demo:debug": "node ./bin/vue-i18n-extract.js report --srcFiles './tests/fixtures/vue-files/**/*.?(vue|js)' --languageFiles './tests/fixtures/lang/**/*.?(json|yaml|yml|js)'",
+    "demo:debug": "node ./bin/vue-i18n-extract.js report --srcFiles './tests/fixtures/src-files/**/*.?(vue|js)' --languageFiles './tests/fixtures/lang/**/*.?(json|yaml|yml|js)'",
     "test": "jest",
     "test:dev": "jest --watch",
     "lint": "eslint **/*.ts"
@@ -31,6 +31,9 @@
     "internationalization-plugin"
   ],
   "author": "Raffaele Pizzari <raffaele.pizzari@gmail.com> (https://raffaelepizzari.com)",
+  "contributors": [
+    "Fabian Jäger <fabian@mailbutler.io>"
+  ],
   "dependencies": {
     "cac": "^6.7.3",
     "dot-object": "^2.1.4",

@@ -55,7 +55,7 @@ describe("vue-i18n-extract CLI", () => {
         (
           await runCLI([
             "--srcFiles",
-            `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
+            `'./tests/fixtures/src-files/**/*.?(vue|js)'`,
           ])
         ).code
       ).not.toBe(0); // we expect a fail if there's no languageFiles option
@@ -64,7 +64,7 @@ describe("vue-i18n-extract CLI", () => {
         (
           await runCLI([
             "--srcFiles",
-            `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
+            `'./tests/fixtures/src-files/**/*.?(vue|js)'`,
             "--languageFiles",
             `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
           ])
@@ -75,7 +75,7 @@ describe("vue-i18n-extract CLI", () => {
         (
           await runCLI([
             "--srcFiles",
-            `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
+            `'./tests/fixtures/src-files/**/*.?(vue|js)'`,
             "--languageFiles",
             `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
             "--output",
@@ -87,7 +87,7 @@ describe("vue-i18n-extract CLI", () => {
       // The --add option literally adds keys to our fixtures, which breaks further tests.
       // expect((await runCLI([
       //   '--srcFiles',
-      //   `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
+      //   `'./tests/fixtures/src-files/**/*.?(vue|js)'`,
       //   '--languageFiles',
       //   `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
       //   '--output',
@@ -98,7 +98,7 @@ describe("vue-i18n-extract CLI", () => {
       // The --remove option literally remove keys from our fixtures, which breaks further tests.
       // expect((await runCLI([
       //   '--srcFiles',
-      //   `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
+      //   `'./tests/fixtures/src-files/**/*.?(vue|js)'`,
       //   '--languageFiles',
       //   `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
       //   '--output',
@@ -110,7 +110,7 @@ describe("vue-i18n-extract CLI", () => {
         (
           await runCLI([
             "--srcFiles",
-            `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
+            `'./tests/fixtures/src-files/**/*.?(vue|js)'`,
             "--languageFiles",
             `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
             "--output",

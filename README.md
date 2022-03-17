@@ -25,7 +25,7 @@
 You can run `vue-i18n-extract` with npx
 
 ```sh
-npx vue-i18n-extract report --srcFiles './path/to/your/vue-files/**/*.?(js|vue)' --languageFiles './path/to/your/language-files/*.?(json|yml|yaml)'
+npx vue-i18n-extract report --srcFiles './path/to/your/src-files/**/*.?(js|vue)' --languageFiles './path/to/your/language-files/*.?(json|yml|yaml)'
 ```
 
 **Or** you can download into your project and run as an `package.json` script.
@@ -39,7 +39,7 @@ Add the following section to your `package.json`:
 ```json
 {
   "scripts": {
-    "vue-i18n-extract": "vue-i18n-extract report --srcFiles './path/to/your/vue-files/**/*.?(js|vue)' --languageFiles './path/to/your/language-files/*.?(json|yml|yaml|js)'"
+    "vue-i18n-extract": "vue-i18n-extract report --srcFiles './path/to/your/src-files/**/*.?(js|vue)' --languageFiles './path/to/your/language-files/*.?(json|yml|yaml|js)'"
   }
 }
 ```
@@ -57,7 +57,7 @@ This will print out a table of missing keys in your language files, as well as u
 ```js
 --srcFiles (required)
 // String as Glob pattern
-// Example: ./path/to/your/vue-files/**/*.?(js|ts|vue)
+// Example: ./path/to/your/src-files/**/*.?(js|ts|vue)
 // The file(s) you want to extract i18n strings from. It can be a path to a folder or to a file. It accepts glob patterns.
 
 --languageFiles (required)
@@ -135,7 +135,7 @@ Make sure you have `vue-i18n-extract` installed locally and import the library.
 const VueI18NExtract = require("vue-i18n-extract");
 
 const report = VueI18NExtract.createI18NReport({
-  srcFiles: "./path/to/vue-files/**/*.?(js|vue)",
+  srcFiles: "./path/to/src-files/**/*.?(js|vue)",
   languageFiles: "./path/to/language-files/*.?(json|yml|yaml|js)",
 });
 ```

@@ -1,6 +1,6 @@
 import fs from "fs";
 import { extractI18NReport, writeReportToFile } from "@/create-report/report";
-import { parseSrcFiles } from "@/create-report/vue-files";
+import { parseSrcFiles } from "@/create-report/src-files";
 import { parselanguageFiles } from "@/create-report/language-files";
 import { expectedI18NReport } from "../../fixtures/expected-values";
 import { srcFiles, languageFiles } from "../../fixtures/resolved-sources";
