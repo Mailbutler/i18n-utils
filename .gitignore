@@ -5,6 +5,8 @@ node_modules
 !.yarn/releases
 !.yarn/plugins
 *.log
+.vscode
+.yarn
 vue-i18n-extract.config.js
 bin/*
 dist/*

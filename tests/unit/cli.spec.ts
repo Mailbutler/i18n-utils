@@ -118,7 +118,7 @@ describe('vue-i18n-extract CLI', () => {
     it('creates a config file', async () => {
       expect((await runCLI(['init'])).code).toBe(0);
 
-      rimraf.sync('./vue-i18n-extract.config.js');
+      rimraf.sync('./i18n-utils.config.js');
     });
   });
 });
