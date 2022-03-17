@@ -13,29 +13,36 @@ function mightBeDynamic(item: I18NItemWithBounding): boolean {
   return item.path.includes('${') && !!item.previousCharacter.match(/`/g) && !!item.nextCharacter.match(/`/g);
 }
 
+function dynamicRegex(item: I18NItem): RegExp {
+  if (!item.path.match(/\w+\$\{[\w]+\}/)) return new RegExp('^$');
+
+  return new RegExp(item.path.replace(/\$\{[\w]+\}/, `\\w+`));
+}
+
 // Looping through the arays multiple times might not be the most effecient, but it's the easiest to read and debug. Which at this scale is an accepted trade-off.
-export function extractI18NReport(vueItems: I18NItemWithBounding[], languageFiles: I18NLanguage): I18NReport {
+export function extractI18NReport(i18nItems: I18NItemWithBounding[], languageFiles: I18NLanguage): I18NReport {
   const missingKeys: I18NItem[] = [];
   const unusedKeys: I18NItem[] = [];
 
-  const maybeDynamicKeys: I18NItem[] = vueItems
-    .filter((vueItem) => mightBeDynamic(vueItem))
-    .map((vueItem) => stripBounding(vueItem));
+  const maybeDynamicKeys: I18NItem[] = i18nItems
+    .filter((item) => mightBeDynamic(item))
+    .map((item) => stripBounding(item));
+
+  const dynamicRegexes = maybeDynamicKeys.filter((item) => !!dynamicRegex(item)).map((item) => dynamicRegex(item));
 
   Object.keys(languageFiles).forEach((language) => {
     const languageItems = languageFiles[language];
 
-    const missingKeysInLanguage = vueItems
-      .filter((vueItem) => !mightBeDynamic(vueItem))
-      .filter((vueItem) => !languageItems.some((languageItem) => vueItem.path === languageItem.path))
-      .map((vueItem) => ({ ...stripBounding(vueItem), language }));
+    const missingKeysInLanguage = i18nItems
+      .filter((item) => !mightBeDynamic(item))
+      .filter((item) => !languageItems.some((languageItem) => item.path === languageItem.path))
+      .map((item) => ({ ...stripBounding(item), language }));
 
     const unusedKeysInLanguage = languageItems
       .filter(
         (languageItem) =>
-          !vueItems.some(
-            (vueItem) => languageItem.path === vueItem.path || languageItem.path.startsWith(vueItem.path + '.')
-          )
+          !i18nItems.some((item) => languageItem.path === item.path || languageItem.path.startsWith(item.path + '.')) &&
+          !dynamicRegexes.some((regex) => regex.test(languageItem.path))
       )
       .map((languageItem) => ({ ...languageItem, language }));
 

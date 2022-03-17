@@ -337,6 +337,11 @@ export const expectedFromParsedLanguageFiles = {
       path: 'unused_json',
       file: './tests/fixtures/lang/en_EN.json',
       line: 8
+    },
+    {
+      path: "dynamic_abc_key",
+      file: "./tests/fixtures/lang/en_EN.json",
+      line: 9
     }
   ]
 };
@@ -513,6 +518,11 @@ export const expectedI18NReport = {
       path: '${dynamicKey}',
       file: './tests/fixtures/src-files/edge-cases.js',
       line: 16
+    },
+    {
+      path: "dynamic_${someValue}_key",
+      file: "./tests/fixtures/src-files/js-component.js",
+      line: 2
     }
   ]
 };

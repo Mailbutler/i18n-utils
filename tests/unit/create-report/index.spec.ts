@@ -55,7 +55,8 @@ describe('file: create-report/index', () => {
     expect(writeMissingSpy).toHaveBeenCalledWith(
       languageFileActions.readLanguageFiles(options.languageFiles),
       expectedI18NReport.missingKeys,
-      Dot
+      Dot,
+      undefined
     );
     expect(consoleInfoSpy).toHaveBeenLastCalledWith('\nThe missing keys have been added to your language files.');
   });
@@ -68,7 +69,8 @@ describe('file: create-report/index', () => {
     expect(removeUnusedSpy).toHaveBeenCalledWith(
       languageFileActions.readLanguageFiles(options.languageFiles),
       expectedI18NReport.unusedKeys,
-      Dot
+      Dot,
+      undefined
     );
     expect(consoleInfoSpy).toHaveBeenLastCalledWith('\nThe unused keys have been removed from your language files.');
   });
