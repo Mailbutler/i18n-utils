@@ -5,6 +5,7 @@ export default {
   output: false,
   add: false,
   remove: false,
+  normalize: false,
   ci: false,
   separator: '.'
 };

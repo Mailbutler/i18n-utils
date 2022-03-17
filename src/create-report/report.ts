@@ -14,9 +14,10 @@ function mightBeDynamic(item: I18NItemWithBounding): boolean {
 }
 
 function dynamicRegex(item: I18NItem): RegExp {
-  if (!item.path.match(/\w+\$\{[\w]+\}/)) return new RegExp('^$');
+  const matchingRegex = /[\w\.\-]\$\{[\w\.\-]+\}/;
+  if (!item.path.match(matchingRegex)) return new RegExp('^$');
 
-  return new RegExp(item.path.replace(/\$\{[\w]+\}/, `\\w+`));
+  return new RegExp(item.path.replace(matchingRegex, `\\w+`));
 }
 
 // Looping through the arays multiple times might not be the most effecient, but it's the easiest to read and debug. Which at this scale is an accepted trade-off.
