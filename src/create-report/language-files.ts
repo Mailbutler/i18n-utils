@@ -5,6 +5,7 @@ import Dot from 'dot-object';
 import yaml from 'js-yaml';
 import isValidGlob from 'is-valid-glob';
 import { SimpleFile, I18NLanguage, I18NItem } from '../types';
+import { sortObject } from './utils';
 
 export function readLanguageFiles(src: string): SimpleFile[] {
   if (!isValidGlob(src)) {
@@ -66,16 +67,21 @@ export function extractI18NLanguageFromLanguageFiles(
 export function writeMissingToLanguageFiles(
   parsedLanguageFiles: SimpleFile[],
   missingKeys: I18NItem[],
-  dot: DotObject.Dot = Dot
+  dot: DotObject.Dot = Dot,
+  normalize = false
 ): void {
   parsedLanguageFiles.forEach((languageFile) => {
-    const languageFileContent = JSON.parse(languageFile.content);
+    let languageFileContent = JSON.parse(languageFile.content);
 
     missingKeys.forEach((item) => {
       if ((item.language && languageFile.fileName.includes(item.language)) || !item.language) {
         dot.str(item.path, '', languageFileContent);
       }
     });
+
+    if (normalize) {
+      languageFileContent = sortObject(languageFileContent);
+    }
 
     writeLanguageFile(languageFile, languageFileContent);
   });
@@ -84,16 +90,21 @@ export function writeMissingToLanguageFiles(
 export function removeUnusedFromLanguageFiles(
   parsedLanguageFiles: SimpleFile[],
   unusedKeys: I18NItem[],
-  dot: DotObject.Dot = Dot
+  dot: DotObject.Dot = Dot,
+  normalize = false
 ): void {
   parsedLanguageFiles.forEach((languageFile) => {
-    const languageFileContent = JSON.parse(languageFile.content);
+    let languageFileContent = JSON.parse(languageFile.content);
 
     unusedKeys.forEach((item) => {
       if (item.language && languageFile.fileName.includes(item.language)) {
         dot.delete(item.path, languageFileContent);
       }
     });
+
+    if (normalize) {
+      languageFileContent = sortObject(languageFileContent);
+    }
 
     writeLanguageFile(languageFile, languageFileContent);
   });

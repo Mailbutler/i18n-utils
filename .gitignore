@@ -8,6 +8,5 @@ node_modules
 .vscode
 .yarn
 i18n-utils.config.js
-bin/*
 dist/*
 .pnp.js

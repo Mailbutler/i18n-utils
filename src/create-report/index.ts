@@ -11,7 +11,16 @@ import { extractI18NReport, writeReportToFile } from './report';
 import Dot from 'dot-object';
 
 export async function createI18NReport(options: ReportOptions): Promise<I18NReport> {
-  const { srcFiles: srcFilesGlob, languageFiles: languageFilesGlob, output, add, remove, ci, separator } = options;
+  const {
+    srcFiles: srcFilesGlob,
+    languageFiles: languageFilesGlob,
+    output,
+    add,
+    remove,
+    normalize,
+    ci,
+    separator
+  } = options;
 
   if (!srcFilesGlob) throw new Error('Required configuration srcFiles is missing.');
   if (!languageFilesGlob) throw new Error('Required configuration languageFiles is missing.');
@@ -39,11 +48,11 @@ export async function createI18NReport(options: ReportOptions): Promise<I18NRepo
   }
 
   if (add && report.missingKeys.length) {
-    writeMissingToLanguageFiles(languageFiles, report.missingKeys, dot);
+    writeMissingToLanguageFiles(languageFiles, report.missingKeys, dot, normalize);
     console.info('\nThe missing keys have been added to your language files.');
   }
   if (remove && report.unusedKeys.length) {
-    removeUnusedFromLanguageFiles(languageFiles, report.unusedKeys, dot);
+    removeUnusedFromLanguageFiles(languageFiles, report.unusedKeys, dot, normalize);
     console.info('\nThe unused keys have been removed from your language files.');
   }
 

@@ -4,6 +4,7 @@ export type ReportOptions = {
   output?: string;
   add?: boolean;
   remove?: boolean;
+  normalize?: boolean;
   ci?: boolean;
   separator?: string;
 };
