@@ -231,7 +231,7 @@ export const expectedFromParsedSrcFiles = [
     line: 2
   },
   {
-    path: "dynamic_${some.value}_key",
+    path: "dynamic_${object?.code?.toUpperCase()}_key",
     nextCharacter: "`",
     previousCharacter: "`",
     file: "./tests/fixtures/src-files/js-component.js",
@@ -544,7 +544,7 @@ export const expectedI18NReport = {
       line: 16
     },
     {
-      path: "dynamic_${some.value}_key",
+      path: "dynamic_${object?.code?.toUpperCase()}_key",
       file: "./tests/fixtures/src-files/js-component.js",
       line: 2
     }
