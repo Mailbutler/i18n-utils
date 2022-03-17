@@ -63,6 +63,13 @@ export const expectedFromParsedSrcFiles = [
     line: 18
   },
   {
+    path: "content.img.src_${var}",
+    nextCharacter: "`",
+    previousCharacter: "`",
+    file: "./tests/fixtures/src-files/Basic.vue",
+    line: 19,
+  },
+  {
     path: 'content.link.a',
     previousCharacter: '"',
     nextCharacter: '"',
@@ -224,6 +231,13 @@ export const expectedFromParsedSrcFiles = [
     line: 2
   },
   {
+    path: "dynamic_${someValue}_key",
+    nextCharacter: "`",
+    previousCharacter: "`",
+    file: "./tests/fixtures/src-files/js-component.js",
+    line: 2,
+  },
+  {
     path: 'missing.english',
     previousCharacter: "'",
     nextCharacter: "'",
@@ -324,24 +338,29 @@ export const expectedFromParsedLanguageFiles = {
       line: 5
     },
     {
-      path: 'Key used as default translation. Second sentence.',
-      file: './tests/fixtures/lang/en_EN.json',
+      path: "content.img.src_A",
+      file: "./tests/fixtures/lang/en_EN.json",
       line: 6
     },
     {
-      path: 'missing.german',
+      path: 'Key used as default translation. Second sentence.',
       file: './tests/fixtures/lang/en_EN.json',
       line: 7
     },
     {
-      path: 'unused_json',
+      path: 'missing.german',
       file: './tests/fixtures/lang/en_EN.json',
       line: 8
     },
     {
+      path: 'unused_json',
+      file: './tests/fixtures/lang/en_EN.json',
+      line: 9
+    },
+    {
       path: "dynamic_abc_key",
       file: "./tests/fixtures/lang/en_EN.json",
-      line: 9
+      line: 10
     }
   ]
 };
@@ -509,11 +528,16 @@ export const expectedI18NReport = {
     {
       path: 'unused_json',
       file: './tests/fixtures/lang/en_EN.json',
-      line: 8,
+      line: 9,
       language: 'en_EN'
     }
   ],
   maybeDynamicKeys: [
+    {
+      path: "content.img.src_${var}",
+      file: "./tests/fixtures/src-files/Basic.vue",
+      line: 19
+    },
     {
       path: '${dynamicKey}',
       file: './tests/fixtures/src-files/edge-cases.js',

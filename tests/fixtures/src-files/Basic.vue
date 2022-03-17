@@ -16,5 +16,6 @@
     </Translation>
     <p v-t="'header.title'"></p>
     <p>{{ .t('header.title') }}</p>
+    <img :src="tt(`content.img.src_${var}`)" />
   </div>
 </template>
