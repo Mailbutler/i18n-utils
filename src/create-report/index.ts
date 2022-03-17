@@ -51,7 +51,7 @@ export async function createI18NReport(options: ReportOptions): Promise<I18NRepo
     writeMissingToLanguageFiles(languageFiles, report.missingKeys, dot, normalize);
     console.info('\nThe missing keys have been added to your language files.');
   }
-  if (remove && report.unusedKeys.length) {
+  if ((remove && report.unusedKeys.length) || normalize) {
     removeUnusedFromLanguageFiles(languageFiles, report.unusedKeys, dot, normalize);
     console.info('\nThe unused keys have been removed from your language files.');
   }
