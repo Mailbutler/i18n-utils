@@ -5,9 +5,9 @@
   "scripts": {
     "build": "rm -fr dist && microbundle --target node -f umd,modern",
     "dev": "microbundle watch --target node",
-    "demo": "node ./bin/vue-i18n-extract.js report --vueFiles './tests/fixtures/vue-files/**/*.?(vue)' --languageFiles './tests/fixtures/lang/**/*.?(json|yaml|yml|js)'",
+    "demo": "node ./bin/vue-i18n-extract.js report --srcFiles './tests/fixtures/vue-files/**/*.?(vue)' --languageFiles './tests/fixtures/lang/**/*.?(json|yaml|yml|js)'",
     "vue-i18n-extract": "node ./bin/vue-i18n-extract.js",
-    "demo:debug": "node ./bin/vue-i18n-extract.js report --vueFiles './tests/fixtures/vue-files/**/*.?(vue|js)' --languageFiles './tests/fixtures/lang/**/*.?(json|yaml|yml|js)'",
+    "demo:debug": "node ./bin/vue-i18n-extract.js report --srcFiles './tests/fixtures/vue-files/**/*.?(vue|js)' --languageFiles './tests/fixtures/lang/**/*.?(json|yaml|yml|js)'",
     "test": "jest",
     "test:dev": "jest --watch",
     "lint": "eslint **/*.ts"

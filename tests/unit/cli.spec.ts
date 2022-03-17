@@ -1,18 +1,19 @@
+import path from "path";
+import { exec, ExecException } from "child_process";
+import rimraf from "rimraf";
 
-import path from 'path';
-import { exec, ExecException } from 'child_process';
-import rimraf from 'rimraf';
-
-function runCLI (args: string[] = []): Promise<{
+function runCLI(args: string[] = []): Promise<{
   code: number;
   error: ExecException | null;
   stdout: string;
   stderr: string;
 }> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     exec(
-      `node ${path.resolve(__dirname + '../../../bin/vue-i18n-extract.js')} ${args.join(' ')}`,
-      { cwd: '.' },
+      `node ${path.resolve(
+        __dirname + "../../../bin/vue-i18n-extract.js"
+      )} ${args.join(" ")}`,
+      { cwd: "." },
       (error, stdout, stderr) => {
         resolve({
           code: error && error.code ? error.code : 0,
@@ -20,55 +21,72 @@ function runCLI (args: string[] = []): Promise<{
           stdout,
           stderr,
         });
-      },
+      }
     );
-})}
+  });
+}
 
-describe('vue-i18n-extract CLI', () => {
-  it('Fail with no arugments, and give a hint.', async () => {
+describe("vue-i18n-extract CLI", () => {
+  it("Fail with no arugments, and give a hint.", async () => {
     const result = await runCLI();
 
     expect(result.code).not.toBe(0);
-    expect(result.stderr).toContain(`Required configuration vueFiles is missing.`);
+    expect(result.stderr).toContain(
+      `Required configuration srcFiles is missing.`
+    );
   });
 
-  it('Show help', async () => {
-    const result = await runCLI(['--help']);
+  it("Show help", async () => {
+    const result = await runCLI(["--help"]);
     expect(result.code).toBe(0);
-    expect(result.stdout).toContain('Usage:');
-    expect(result.stdout).toContain('$ vue-i18n-extract.js');
-    expect(result.stdout).toContain(`Create a report from a glob of your Vue.js source files and your language files.`);
+    expect(result.stdout).toContain("Usage:");
+    expect(result.stdout).toContain("$ vue-i18n-extract.js");
+    expect(result.stdout).toContain(
+      `Create a report from a glob of your Vue.js source files and your language files.`
+    );
     expect(result.stdout).toContain(`init`);
   });
 
-  describe('Report Command', () => {
-    it('Run the command with defined options', async () => {
-      rimraf.sync('./vue-i18n-extract.config.js');
+  describe("Report Command", () => {
+    it("Run the command with defined options", async () => {
+      rimraf.sync("./vue-i18n-extract.config.js");
 
-      expect((await runCLI([
-        '--vueFiles',
-        `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
-      ])).code).not.toBe(0); // we expect a fail if there's no languageFiles option
+      expect(
+        (
+          await runCLI([
+            "--srcFiles",
+            `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
+          ])
+        ).code
+      ).not.toBe(0); // we expect a fail if there's no languageFiles option
 
-      expect((await runCLI([
-        '--vueFiles',
-        `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
-        '--languageFiles',
-        `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
-      ])).code).toBe(0);
+      expect(
+        (
+          await runCLI([
+            "--srcFiles",
+            `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
+            "--languageFiles",
+            `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
+          ])
+        ).code
+      ).toBe(0);
 
-      expect((await runCLI([
-        '--vueFiles',
-        `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
-        '--languageFiles',
-        `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
-        '--output',
-        `'/dev/null'`
-      ])).code).toBe(0);
+      expect(
+        (
+          await runCLI([
+            "--srcFiles",
+            `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
+            "--languageFiles",
+            `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
+            "--output",
+            `'/dev/null'`,
+          ])
+        ).code
+      ).toBe(0);
 
       // The --add option literally adds keys to our fixtures, which breaks further tests.
       // expect((await runCLI([
-      //   '--vueFiles',
+      //   '--srcFiles',
       //   `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
       //   '--languageFiles',
       //   `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
@@ -79,7 +97,7 @@ describe('vue-i18n-extract CLI', () => {
 
       // The --remove option literally remove keys from our fixtures, which breaks further tests.
       // expect((await runCLI([
-      //   '--vueFiles',
+      //   '--srcFiles',
       //   `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
       //   '--languageFiles',
       //   `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
@@ -88,30 +106,32 @@ describe('vue-i18n-extract CLI', () => {
       //   '--remove',
       // ])).code).toBe(0);
 
-      expect((await runCLI([
-        '--vueFiles',
-        `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
-        '--languageFiles',
-        `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
-        '--output',
-        `'/dev/null'`,
-        '--ci',
-      ])).code).not.toBe(0); // We expect this to fail if CI is true, because there's missing and unused keys
+      expect(
+        (
+          await runCLI([
+            "--srcFiles",
+            `'./tests/fixtures/vue-files/**/*.?(vue|js)'`,
+            "--languageFiles",
+            `'./tests/fixtures/lang/**/*.?(json|yml|yaml)'`,
+            "--output",
+            `'/dev/null'`,
+            "--ci",
+          ])
+        ).code
+      ).not.toBe(0); // We expect this to fail if CI is true, because there's missing and unused keys
     });
   });
 
-  describe('Init Command', () => {
+  describe("Init Command", () => {
     beforeEach(() => {
       jest.resetModules();
       jest.resetAllMocks();
     });
 
-    it('creates a config file', async () => {
-      expect((await runCLI([
-        'init',
-      ])).code).toBe(0);
+    it("creates a config file", async () => {
+      expect((await runCLI(["init"])).code).toBe(0);
 
-      rimraf.sync('./vue-i18n-extract.config.js');
+      rimraf.sync("./vue-i18n-extract.config.js");
     });
   });
 });

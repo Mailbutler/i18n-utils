@@ -23,20 +23,23 @@
 # Usage
 
 You can run `vue-i18n-extract` with npx
+
 ```sh
-npx vue-i18n-extract report --vueFiles './path/to/your/vue-files/**/*.?(js|vue)' --languageFiles './path/to/your/language-files/*.?(json|yml|yaml)'
+npx vue-i18n-extract report --srcFiles './path/to/your/vue-files/**/*.?(js|vue)' --languageFiles './path/to/your/language-files/*.?(json|yml|yaml)'
 ```
 
 **Or** you can download into your project and run as an `package.json` script.
+
 ```sh
 npm install --save-dev vue-i18n-extract
 ```
 
 Add the following section to your `package.json`:
+
 ```json
 {
   "scripts": {
-    "vue-i18n-extract": "vue-i18n-extract report --vueFiles './path/to/your/vue-files/**/*.?(js|vue)' --languageFiles './path/to/your/language-files/*.?(json|yml|yaml|js)'"
+    "vue-i18n-extract": "vue-i18n-extract report --srcFiles './path/to/your/vue-files/**/*.?(js|vue)' --languageFiles './path/to/your/language-files/*.?(json|yml|yaml|js)'"
   }
 }
 ```
@@ -52,10 +55,10 @@ This will print out a table of missing keys in your language files, as well as u
 # Config
 
 ```js
---vueFiles (required)
+--srcFiles (required)
 // String as Glob pattern
-// Example: ./path/to/your/vue-files/**/*.?(js|vue)
-// The Vue.js file(s) you want to extract i18n strings from. It can be a path to a folder or to a file. It accepts glob patterns.
+// Example: ./path/to/your/vue-files/**/*.?(js|ts|vue)
+// The file(s) you want to extract i18n strings from. It can be a path to a folder or to a file. It accepts glob patterns.
 
 --languageFiles (required)
 // String as Glob pattern
@@ -91,6 +94,7 @@ Optionally you can add a `vue-i18n-extract.config.js` file to the root of your p
 # Supported `vue-i18n` Formats
 
 - Static in template or script:
+
 ```js
 // Single or double quote, and template literals
 $t('key.static') $t("key.static") $t(`key.static`)
@@ -106,28 +110,33 @@ tc('key.static', 0) tc("key.static", 1) tc(`key.static`, 2)
 ```
 
 - i18n component:
+
 ```html
 <i18n path="key.component"></i18n>
 <i18n-t keypath="key.component"></i18n-t>
 <Translate keypath="key.component"></Translate>
 ```
+
 > Note: As of right now there is no support for binding in a path like `:path="condition ? 'string1' : 'string2'"` there is just support for strings as shown above.
 
 - v-t directive with string literal:
+
 ```html
 <p v-t="'key.directive'"></p>
 ```
+
 > Note: As of right now there is no object support to reference a path from component data.
 
 # Usage in NodeJS
+
 Make sure you have `vue-i18n-extract` installed locally and import the library.
 
 ```js
-const VueI18NExtract = require('vue-i18n-extract');
+const VueI18NExtract = require("vue-i18n-extract");
 
 const report = VueI18NExtract.createI18NReport({
-  vueFiles: './path/to/vue-files/**/*.?(js|vue)',
-  languageFiles: './path/to/language-files/*.?(json|yml|yaml|js)',
+  srcFiles: "./path/to/vue-files/**/*.?(js|vue)",
+  languageFiles: "./path/to/language-files/*.?(json|yml|yaml|js)",
 });
 ```
 
@@ -137,6 +146,7 @@ Setting up a Vue.js app with internationalization (i18n) support is easy nowaday
 However, in our personal experience we found it very difficult to keep the language files and the `.vue` files in sync.
 
 That's why we wrote `vue-i18n-extract`. We needed a way to analyze and compare our language files to our Vue.js source files, then report the result in a useful way.
+
 # Contribution
 
 Please make sure to read the [Contributing Guide](.github/CONTRIBUTING.md) before making a pull request.

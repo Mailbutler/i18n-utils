@@ -1,23 +1,30 @@
-import { readVueFiles, parseVueFiles } from '@/create-report/vue-files';
-import { expectedFromParsedVueFiles } from '../../fixtures/expected-values';
-import { vueFiles } from '../../fixtures/resolved-sources';
-import path from 'path';
+import { readSrcFiles, parseSrcFiles } from "@/create-report/vue-files";
+import { expectedFromParsedSrcFiles } from "../../fixtures/expected-values";
+import { srcFiles } from "../../fixtures/resolved-sources";
+import path from "path";
 
-describe('file: create-report/vue-files', () => {
-  describe('function: parseVueFiles', () => {
-    it('Parse the file glob into I18n items', () => {
-      const I18NItems = parseVueFiles(vueFiles);
-      expect(I18NItems).toEqual(expectedFromParsedVueFiles);
+describe("file: create-report/vue-files", () => {
+  describe("function: parseSrcFiles", () => {
+    it("Parse the file glob into I18n items", () => {
+      const I18NItems = parseSrcFiles(srcFiles);
+      expect(I18NItems).toEqual(expectedFromParsedSrcFiles);
     });
 
-    it('Throws an error if it is not a valid glob', () => {
-      const breakingVueFiles = '';
-      expect(() => readVueFiles(breakingVueFiles)).toThrow(`vueFiles isn't a valid glob pattern.`);
+    it("Throws an error if it is not a valid glob", () => {
+      const breakingSrcFiles = "";
+      expect(() => readSrcFiles(breakingSrcFiles)).toThrow(
+        `srcFiles isn't a valid glob pattern.`
+      );
     });
 
-    it('Throws an error if it does not find any file', () => {
-      const breakingVueFiles = path.resolve(__dirname, '../fixtures/vue-files/**/*.txt');
-      expect(() => readVueFiles(breakingVueFiles)).toThrow('vueFiles glob has no files.');
+    it("Throws an error if it does not find any file", () => {
+      const breakingSrcFiles = path.resolve(
+        __dirname,
+        "../fixtures/vue-files/**/*.txt"
+      );
+      expect(() => readSrcFiles(breakingSrcFiles)).toThrow(
+        "srcFiles glob has no files."
+      );
     });
   });
 });
