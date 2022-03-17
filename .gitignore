@@ -7,7 +7,7 @@ node_modules
 *.log
 .vscode
 .yarn
-vue-i18n-extract.config.js
+i18n-utils.config.js
 bin/*
 dist/*
 .pnp.js

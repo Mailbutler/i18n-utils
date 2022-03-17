@@ -1,5 +1,5 @@
 import { initCommand, resolveConfig } from '@/config-file';
-import defaultConfig from '@/config-file/vue-i18n-extract.config';
+import defaultConfig from '@/config-file/i18n-utils.config';
 import rimraf from 'rimraf';
 
 describe('file: config-file/index', () => {
@@ -15,7 +15,7 @@ describe('file: config-file/index', () => {
       })
     );
 
-    rimraf('./vue-i18n-extract.config.js', () => {
+    rimraf('./i18n-utils.config.js', () => {
       done();
     });
   });

@@ -1,37 +1,37 @@
 <h1 align="center">
-  <a href="https://github.com/pixari/vue-i18n-extract"><img align="center" width="70%"src=".github/img/vue-18n-extract-logo.png" alt="vue-i18n-logo"></a>
+  <a href="https://github.com/pixari/i18n-utils"><img align="center" width="70%"src=".github/img/vue-18n-extract-logo.png" alt="vue-i18n-logo"></a>
 </h1>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/vue-i18n-extract"><img src="https://img.shields.io/npm/v/vue-i18n-extract.svg?style=flat-square" alt="NPM Version"></a>
-  <a href="https://www.npmjs.com/package/vue-i18n-extract"><img src="https://img.shields.io/npm/dm/vue-i18n-extract.svg?style=flat-square" alt="Downloads"></a>
-  <a href="https://snyk.io/test/github/pixari/vue-i18n-extract?targetFile=package.json"><img src="https://snyk.io/test/github/pixari/vue-i18n-extract/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a>
-  <a href="https://codeclimate.com/github/pixari/vue-i18n-extract/maintainability"><img src="https://api.codeclimate.com/v1/badges/d21f341c33b2bfb6fe0e/maintainability" alt="Maintainability"></a>
-  <img src="https://github.com/pixari/vue-i18n-extract/workflows/Test/badge.svg?branch=master" alt="Tests">
+  <a href="https://www.npmjs.com/package/i18n-utils"><img src="https://img.shields.io/npm/v/i18n-utils.svg?style=flat-square" alt="NPM Version"></a>
+  <a href="https://www.npmjs.com/package/i18n-utils"><img src="https://img.shields.io/npm/dm/i18n-utils.svg?style=flat-square" alt="Downloads"></a>
+  <a href="https://snyk.io/test/github/pixari/i18n-utils?targetFile=package.json"><img src="https://snyk.io/test/github/pixari/i18n-utils/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a>
+  <a href="https://codeclimate.com/github/pixari/i18n-utils/maintainability"><img src="https://api.codeclimate.com/v1/badges/d21f341c33b2bfb6fe0e/maintainability" alt="Maintainability"></a>
+  <img src="https://github.com/pixari/i18n-utils/workflows/Test/badge.svg?branch=master" alt="Tests">
 </p>
 
-`vue-i18n-extract` is built to work with your Vue.js projects using the library [vue-i18n](https://kazupon.github.io/vue-i18n/). It runs static analysis on your Vue.js source code looking for any `vue-i18n` usage, in order to:
+`i18n-utils` is built to work with your Vue.js projects using the library [vue-i18n](https://kazupon.github.io/vue-i18n/). It runs static analysis on your Vue.js source code looking for any `vue-i18n` usage, in order to:
 
 - Report all **missing keys** in your language files.
 - Report all **unused keys** in your language files.
 - Optionally write every missing key into your language files.
 
 <p align="center">
-  <img align="center" width="80%" src=".github/img/vue-i18n-extract-screenshot.png">
+  <img align="center" width="80%" src=".github/img/i18n-utils-screenshot.png">
 </p>
 
 # Usage
 
-You can run `vue-i18n-extract` with npx
+You can run `i18n-utils` with npx
 
 ```sh
-npx vue-i18n-extract report --srcFiles './path/to/your/src-files/**/*.?(js|vue)' --languageFiles './path/to/your/language-files/*.?(json|yml|yaml)'
+npx i18n-utils report --srcFiles './path/to/your/src-files/**/*.?(js|vue)' --languageFiles './path/to/your/language-files/*.?(json|yml|yaml)'
 ```
 
 **Or** you can download into your project and run as an `package.json` script.
 
 ```sh
-npm install --save-dev vue-i18n-extract
+npm install --save-dev i18n-utils
 ```
 
 Add the following section to your `package.json`:
@@ -39,7 +39,7 @@ Add the following section to your `package.json`:
 ```json
 {
   "scripts": {
-    "vue-i18n-extract": "vue-i18n-extract report --srcFiles './path/to/your/src-files/**/*.?(js|vue)' --languageFiles './path/to/your/language-files/*.?(json|yml|yaml|js)'"
+    "i18n-utils": "i18n-utils report --srcFiles './path/to/your/src-files/**/*.?(js|vue)' --languageFiles './path/to/your/language-files/*.?(json|yml|yaml|js)'"
   }
 }
 ```
@@ -47,7 +47,7 @@ Add the following section to your `package.json`:
 Finally, run:
 
 ```sh
-npm run vue-i18n-extract
+npm run i18n-utils
 ```
 
 This will print out a table of missing keys in your language files, as well as unused keys in your language files.
@@ -89,7 +89,7 @@ This will print out a table of missing keys in your language files, as well as u
 
 ## Config File
 
-Optionally you can add a `vue-i18n-extract.config.js` file to the root of your project. Run `npx vue-i18n-extract init` to quickly bootstrap a config file. Available configuration is found [here](src/config-file/vue-i18n-extract.config.ts). Once you have a config file you can then just run `npx vue-i18n-extract`
+Optionally you can add a `i18n-utils.config.js` file to the root of your project. Run `npx i18n-utils init` to quickly bootstrap a config file. Available configuration is found [here](src/config-file/i18n-utils.config.ts). Once you have a config file you can then just run `npx i18n-utils`
 
 # Supported `vue-i18n` Formats
 
@@ -129,14 +129,14 @@ tc('key.static', 0) tc("key.static", 1) tc(`key.static`, 2)
 
 # Usage in NodeJS
 
-Make sure you have `vue-i18n-extract` installed locally and import the library.
+Make sure you have `i18n-utils` installed locally and import the library.
 
 ```js
-const VueI18NExtract = require("vue-i18n-extract");
+const VueI18NExtract = require('i18n-utils');
 
 const report = VueI18NExtract.createI18NReport({
-  srcFiles: "./path/to/src-files/**/*.?(js|vue)",
-  languageFiles: "./path/to/language-files/*.?(json|yml|yaml|js)",
+  srcFiles: './path/to/src-files/**/*.?(js|vue)',
+  languageFiles: './path/to/language-files/*.?(json|yml|yaml|js)'
 });
 ```
 
@@ -145,7 +145,7 @@ const report = VueI18NExtract.createI18NReport({
 Setting up a Vue.js app with internationalization (i18n) support is easy nowadays: Once you have installed the plugin and injected into the Vue instance, you can just put `$t(‘Hello World’)` inside Vue.js component templates to use the plugin.
 However, in our personal experience we found it very difficult to keep the language files and the `.vue` files in sync.
 
-That's why we wrote `vue-i18n-extract`. We needed a way to analyze and compare our language files to our Vue.js source files, then report the result in a useful way.
+That's why we wrote `i18n-utils`. We needed a way to analyze and compare our language files to our Vue.js source files, then report the result in a useful way.
 
 # Contribution
 

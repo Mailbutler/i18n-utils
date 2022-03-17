@@ -31,7 +31,7 @@ export default {
     <p>{{ translation }}</p>
 
     <p>{{ t('header.title') }}</p>
-    <p>{{ t('content.paragraph.p_1', { count: 'two' }) }}</p>
+    <p>{{ t("content.paragraph.p_1", { count: 'two' }) }}</p>
     <p>{{ tc(`content.paragraph.p.2`, 2) }}</p>
   </div>
 </template>

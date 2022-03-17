@@ -2,9 +2,9 @@ We are very happy to get any kind of contribution to this project and we would l
 
 When contributing to this repository, please first discuss the changes you wish to make via issue or pull request.
 
-### :bug: Report bugs using Github's [issues](https://github.com/pixari/vue-i18n-extract/issues)
+### :bug: Report bugs using Github's [issues](https://github.com/pixari/i18n-utils/issues)
 
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/pixari/vue-i18n-extract/issues/new).
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/pixari/i18n-utils/issues/new).
 
 Great Bug Reports tend to have:
 
@@ -23,4 +23,5 @@ Great Bug Reports tend to have:
 6. Issue that pull request!
 
 #### Any contributions that you make will be under the MIT Software License
+
 In short, when you submit the code changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.

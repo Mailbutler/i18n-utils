@@ -10,7 +10,7 @@ function runCLI(args: string[] = []): Promise<{
 }> {
   return new Promise((resolve) => {
     exec(
-      `node ${path.resolve(__dirname + '../../../bin/vue-i18n-extract.js')} ${args.join(' ')}`,
+      `node ${path.resolve(__dirname + '../../../bin/i18n-utils.js')} ${args.join(' ')}`,
       { cwd: '.' },
       (error, stdout, stderr) => {
         resolve({
@@ -24,7 +24,7 @@ function runCLI(args: string[] = []): Promise<{
   });
 }
 
-describe('vue-i18n-extract CLI', () => {
+describe('i18n-utils CLI', () => {
   it('Fail with no arugments, and give a hint.', async () => {
     const result = await runCLI();
 
@@ -36,14 +36,14 @@ describe('vue-i18n-extract CLI', () => {
     const result = await runCLI(['--help']);
     expect(result.code).toBe(0);
     expect(result.stdout).toContain('Usage:');
-    expect(result.stdout).toContain('$ vue-i18n-extract.js');
-    expect(result.stdout).toContain(`Create a report from a glob of your Vue.js source files and your language files.`);
+    expect(result.stdout).toContain('$ i18n-utils.js');
+    expect(result.stdout).toContain(`Create a report from a glob of your source files and your language files.`);
     expect(result.stdout).toContain(`init`);
   });
 
   describe('Report Command', () => {
     it('Run the command with defined options', async () => {
-      rimraf.sync('./vue-i18n-extract.config.js');
+      rimraf.sync('./i18n-utils.config.js');
 
       expect((await runCLI(['--srcFiles', `'./tests/fixtures/src-files/**/*.?(vue|js)'`])).code).not.toBe(0); // we expect a fail if there's no languageFiles option
 

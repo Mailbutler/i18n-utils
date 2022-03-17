@@ -1,5 +1,5 @@
 export default {
-  // Options documented in vue-i18n-extract readme.
+  // Options documented in i18n-utils readme.
   srcFiles: './src/**/*.?(js|ts|vue)',
   languageFiles: './lang/**/*.?(json|yaml|yml|js)',
   output: false,
