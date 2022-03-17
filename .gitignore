@@ -10,3 +10,4 @@ node_modules
 vue-i18n-extract.config.js
 bin/*
 dist/*
+.pnp.js
