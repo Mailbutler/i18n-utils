@@ -19,6 +19,10 @@
   "main": "dist/i18n-utils.umd.js",
   "module": "dist/i18n-utils.modern.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/*",
+    "bin/*"
+  ],
   "repository": "https://github.com/pixari/i18n-utils",
   "homepage": "https://github.com/pixari/i18n-utils",
   "bugs": "https://github.com/pixari/i18n-utils/issues",
