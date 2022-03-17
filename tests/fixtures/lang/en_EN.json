@@ -21,5 +21,6 @@
     "german": "Missing!"
   },
   "unused_json": "This key is unused.",
-  "dynamic_abc_key": "Dynamic Key for ABC"
+  "dynamic_abc_key": "Dynamic Key for ABC",
+  "CONTINENT_NAME_AF": "Africa"
 }

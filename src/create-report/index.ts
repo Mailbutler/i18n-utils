@@ -38,7 +38,7 @@ export async function createI18NReport(options: ReportOptions): Promise<I18NRepo
   if (report.unusedKeys.length) console.info('\nUnused Keys'), console.table(report.unusedKeys);
   if (report.maybeDynamicKeys.length)
     console.warn(
-      '\nSuspected Dynamic Keys Found\ni18n-utils does not compile Vue templates and therefore can not infer the correct key for the following keys.'
+      "\nSuspected Dynamic Keys Found\ni18n-utils is extra cautious and won't consider any matching key as 'unused'."
     ),
       console.table(report.maybeDynamicKeys);
 

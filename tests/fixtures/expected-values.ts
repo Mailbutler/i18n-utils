@@ -63,11 +63,18 @@ export const expectedFromParsedSrcFiles = [
     line: 18
   },
   {
-    path: "content.img.src_${var}",
-    nextCharacter: "`",
-    previousCharacter: "`",
-    file: "./tests/fixtures/src-files/Basic.vue",
-    line: 19,
+    path: 'content.img.src_${var}',
+    nextCharacter: '`',
+    previousCharacter: '`',
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 19
+  },
+  {
+    path: 'CONTINENT_NAME_${this.origin.country_code}',
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 20,
+    nextCharacter: '`',
+    previousCharacter: '`'
   },
   {
     path: 'content.link.a',
@@ -231,11 +238,11 @@ export const expectedFromParsedSrcFiles = [
     line: 2
   },
   {
-    path: "dynamic_${object?.code?.toUpperCase()}_key",
-    nextCharacter: "`",
-    previousCharacter: "`",
-    file: "./tests/fixtures/src-files/js-component.js",
-    line: 2,
+    path: 'dynamic_${object?.code?.toUpperCase()}_key',
+    nextCharacter: '`',
+    previousCharacter: '`',
+    file: './tests/fixtures/src-files/js-component.js',
+    line: 2
   },
   {
     path: 'missing.english',
@@ -338,8 +345,8 @@ export const expectedFromParsedLanguageFiles = {
       line: 5
     },
     {
-      path: "content.img.src_A",
-      file: "./tests/fixtures/lang/en_EN.json",
+      path: 'content.img.src_A',
+      file: './tests/fixtures/lang/en_EN.json',
       line: 6
     },
     {
@@ -358,9 +365,14 @@ export const expectedFromParsedLanguageFiles = {
       line: 9
     },
     {
-      path: "dynamic_abc_key",
-      file: "./tests/fixtures/lang/en_EN.json",
+      path: 'dynamic_abc_key',
+      file: './tests/fixtures/lang/en_EN.json',
       line: 10
+    },
+    {
+      path: 'CONTINENT_NAME_AF',
+      file: './tests/fixtures/lang/en_EN.json',
+      line: 11
     }
   ]
 };
@@ -534,9 +546,14 @@ export const expectedI18NReport = {
   ],
   maybeDynamicKeys: [
     {
-      path: "content.img.src_${var}",
-      file: "./tests/fixtures/src-files/Basic.vue",
+      path: 'content.img.src_${var}',
+      file: './tests/fixtures/src-files/Basic.vue',
       line: 19
+    },
+    {
+      path: 'CONTINENT_NAME_${this.origin.country_code}',
+      file: './tests/fixtures/src-files/Basic.vue',
+      line: 20
     },
     {
       path: '${dynamicKey}',
@@ -544,8 +561,8 @@ export const expectedI18NReport = {
       line: 16
     },
     {
-      path: "dynamic_${object?.code?.toUpperCase()}_key",
-      file: "./tests/fixtures/src-files/js-component.js",
+      path: 'dynamic_${object?.code?.toUpperCase()}_key',
+      file: './tests/fixtures/src-files/js-component.js',
       line: 2
     }
   ]

@@ -17,5 +17,6 @@
     <p v-t="'header.title'"></p>
     <p>{{ .t('header.title') }}</p>
     <img :src="tt(`content.img.src_${var}`)" />
+    <h4>{{ tt(`CONTINENT_NAME_${this.origin.country_code}`) }}
   </div>
 </template>

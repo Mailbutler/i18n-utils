@@ -31,7 +31,7 @@ describe('file: create-report/index', () => {
     await createI18NReport(options);
 
     expect(consoleWarnSpy).toHaveBeenCalledWith(
-      '\nSuspected Dynamic Keys Found\ni18n-utils does not compile Vue templates and therefore can not infer the correct key for the following keys.'
+      "\nSuspected Dynamic Keys Found\ni18n-utils is extra cautious and won't consider any matching key as 'unused'."
     );
     expect(consoleTableSpy).toHaveBeenCalledTimes(3);
     expect(consoleTableSpy.mock.calls[0][0]).toEqual(expectedI18NReport.missingKeys);
