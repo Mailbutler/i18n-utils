@@ -17,6 +17,7 @@
     <p v-t="'header.title'"></p>
     <p>{{ .t('header.title') }}</p>
     <img :src="tt(`content.img.src_${var}`)" />
-    <h4>{{ tt(`CONTINENT_NAME_${this.origin.country_code}`) }}
+    <h4>{{ tt(`CONTINENT_NAME_${this.origin.country_code}`) }}</h4>
+    <h5>{{ $tm(`AUTO_bcc_${fieldName.toUpperCase()}_${mode.toUpperCase()}`) }}</h5>
   </div>
 </template>

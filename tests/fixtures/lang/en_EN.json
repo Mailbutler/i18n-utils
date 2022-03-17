@@ -22,5 +22,6 @@
   },
   "unused_json": "This key is unused.",
   "dynamic_abc_key": "Dynamic Key for ABC",
-  "CONTINENT_NAME_AF": "Africa"
+  "CONTINENT_NAME_AF": "Africa",
+  "AUTO_BCC_RECIPIENT_EQUAL": "Recipient address is equal to"
 }

@@ -71,10 +71,17 @@ export const expectedFromParsedSrcFiles = [
   },
   {
     path: 'CONTINENT_NAME_${this.origin.country_code}',
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 20,
     nextCharacter: '`',
-    previousCharacter: '`'
+    previousCharacter: '`',
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 20
+  },
+  {
+    path: 'AUTO_bcc_${fieldName.toUpperCase()}_${mode.toUpperCase()}',
+    nextCharacter: '`',
+    previousCharacter: '`',
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 21
   },
   {
     path: 'content.link.a',
@@ -373,6 +380,11 @@ export const expectedFromParsedLanguageFiles = {
       path: 'CONTINENT_NAME_AF',
       file: './tests/fixtures/lang/en_EN.json',
       line: 11
+    },
+    {
+      path: 'AUTO_BCC_RECIPIENT_EQUAL',
+      file: './tests/fixtures/lang/en_EN.json',
+      line: 12
     }
   ]
 };
@@ -554,6 +566,11 @@ export const expectedI18NReport = {
       path: 'CONTINENT_NAME_${this.origin.country_code}',
       file: './tests/fixtures/src-files/Basic.vue',
       line: 20
+    },
+    {
+      path: 'AUTO_bcc_${fieldName.toUpperCase()}_${mode.toUpperCase()}',
+      file: './tests/fixtures/src-files/Basic.vue',
+      line: 21
     },
     {
       path: '${dynamicKey}',
