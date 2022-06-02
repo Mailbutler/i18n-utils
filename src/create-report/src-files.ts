@@ -3,12 +3,16 @@ import isValidGlob from 'is-valid-glob';
 import glob from 'glob';
 import fs from 'fs';
 
-export function readSrcFiles(src: string): SimpleFile[] {
+export function readSrcFiles(src: string | string[]): SimpleFile[] {
   if (!isValidGlob(src)) {
     throw new Error(`srcFiles isn't a valid glob pattern.`);
   }
 
-  const targetFiles = glob.sync(src);
+  if (!Array.isArray(src)) {
+    src = [src];
+  }
+
+  const targetFiles = src.flatMap((targetFile) => glob.sync(targetFile)).sort((a, b) => (a > b ? -1 : 1));
 
   if (targetFiles.length === 0) {
     throw new Error('srcFiles glob has no files.');
@@ -92,6 +96,6 @@ export function extractI18NItemsFromSrcFiles(sourceFiles: SimpleFile[]): I18NIte
 }
 
 // This is a convenience function for users implementing in their own projects, and isn't used internally
-export function parseSrcFiles(srcFiles: string): I18NItemWithBounding[] {
+export function parseSrcFiles(srcFiles: string | string[]): I18NItemWithBounding[] {
   return extractI18NItemsFromSrcFiles(readSrcFiles(srcFiles));
 }

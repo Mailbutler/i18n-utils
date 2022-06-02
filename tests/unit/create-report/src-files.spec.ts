@@ -1,12 +1,18 @@
 import { readSrcFiles, parseSrcFiles } from '@/create-report/src-files';
 import { expectedFromParsedSrcFiles } from '../../fixtures/expected-values';
-import { srcFiles } from '../../fixtures/resolved-sources';
+import { srcFiles, srcFilesArray } from '../../fixtures/resolved-sources';
 import path from 'path';
 
 describe('file: create-report/src-files', () => {
   describe('function: parseSrcFiles', () => {
     it('Parse the file glob into I18n items', () => {
       const I18NItems = parseSrcFiles(srcFiles);
+      expect(I18NItems).toEqual(expectedFromParsedSrcFiles);
+    });
+
+    it('accepts multiple file globs passed as arguments', () => {
+      const I18NItems = parseSrcFiles(srcFilesArray);
+      expect(I18NItems.length).toEqual(expectedFromParsedSrcFiles.length);
       expect(I18NItems).toEqual(expectedFromParsedSrcFiles);
     });
 
