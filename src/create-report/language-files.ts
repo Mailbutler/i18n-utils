@@ -7,12 +7,16 @@ import isValidGlob from 'is-valid-glob';
 import { SimpleFile, I18NLanguage, I18NItem } from '../types';
 import { sortObject } from './utils';
 
-export function readLanguageFiles(src: string): SimpleFile[] {
+export function readLanguageFiles(src: string | string[]): SimpleFile[] {
   if (!isValidGlob(src)) {
     throw new Error(`languageFiles isn't a valid glob pattern.`);
   }
 
-  const targetFiles = glob.sync(src);
+  if (!Array.isArray(src)) {
+    src = [src];
+  }
+
+  const targetFiles = src.flatMap((targetFile) => glob.sync(targetFile));
 
   if (targetFiles.length === 0) {
     throw new Error('languageFiles glob has no files.');
@@ -129,6 +133,6 @@ function writeLanguageFile(languageFile: SimpleFile, newLanguageFileContent: unk
 }
 
 // This is a convenience function for users implementing in their own projects, and isn't used internally
-export function parselanguageFiles(languageFiles: string, dot: DotObject.Dot = Dot): I18NLanguage {
+export function parselanguageFiles(languageFiles: string | string[], dot: DotObject.Dot = Dot): I18NLanguage {
   return extractI18NLanguageFromLanguageFiles(readLanguageFiles(languageFiles), dot);
 }

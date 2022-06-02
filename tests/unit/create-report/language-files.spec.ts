@@ -8,7 +8,7 @@ import {
   parselanguageFiles
 } from '@/create-report/language-files';
 import { expectedFromParsedLanguageFiles, expectedI18NReport } from '../../fixtures/expected-values';
-import { languageFiles } from '../../fixtures/resolved-sources';
+import { languageFiles, languageFilesArray } from '../../fixtures/resolved-sources';
 
 describe('file: create-report/language-files', () => {
   describe('function: parselanguageFiles', () => {
@@ -17,14 +17,19 @@ describe('file: create-report/language-files', () => {
       expect(I18NLanguage).toEqual(expectedFromParsedLanguageFiles);
     });
 
+    it('accepts multiple file globs passed as arguments', () => {
+      const I18NLanguage = parselanguageFiles(languageFilesArray);
+      expect(I18NLanguage).toEqual(expectedFromParsedLanguageFiles);
+    });
+
     it('Throws an error if it is not a valid glob', () => {
       const brokenLanguageSource = '';
-      expect(() => readLanguageFiles(brokenLanguageSource)).toThrow(`languageFiles isn't a valid glob pattern.`);
+      expect(() => readLanguageFiles([brokenLanguageSource])).toThrow(`languageFiles isn't a valid glob pattern.`);
     });
 
     it('Throws an error if it does not find any file', () => {
       const brokenLanguageSource = path.resolve(__dirname, '../fixtures/language-files/**/*.txt');
-      expect(() => readLanguageFiles(brokenLanguageSource)).toThrow('languageFiles glob has no files.');
+      expect(() => readLanguageFiles([brokenLanguageSource])).toThrow('languageFiles glob has no files.');
     });
   });
 
@@ -33,7 +38,7 @@ describe('file: create-report/language-files', () => {
       const writeFileSyncSpy = jest.spyOn(fs, 'writeFileSync');
       writeFileSyncSpy.mockImplementation(() => jest.fn());
       const dotStrSpy = jest.spyOn(dot, 'str');
-      writeMissingToLanguageFiles(readLanguageFiles(languageFiles), expectedI18NReport.missingKeys);
+      writeMissingToLanguageFiles(readLanguageFiles([languageFiles]), expectedI18NReport.missingKeys);
       expect(dotStrSpy).toHaveBeenCalledTimes(36);
       expect(writeFileSyncSpy).toHaveBeenCalledTimes(3);
       expect(writeFileSyncSpy.mock.calls[0][1]).toContain('missing');
@@ -46,7 +51,7 @@ describe('file: create-report/language-files', () => {
       writeFileSyncSpy.mockImplementation(() => jest.fn());
       jest.resetAllMocks();
       const dotDeleteSpy = jest.spyOn(dot, 'delete');
-      removeUnusedFromLanguageFiles(readLanguageFiles(languageFiles), expectedI18NReport.unusedKeys);
+      removeUnusedFromLanguageFiles(readLanguageFiles([languageFiles]), expectedI18NReport.unusedKeys);
       expect(dotDeleteSpy).toHaveBeenCalledTimes(5);
       expect(writeFileSyncSpy).toHaveBeenCalledTimes(3);
       expect(writeFileSyncSpy.mock.calls[0][1]).not.toContain('unused');

@@ -1,115 +1,31 @@
 export const expectedFromParsedSrcFiles = [
   {
-    path: 'header.title',
+    path: 'header.paragraphs.p_1',
     previousCharacter: "'",
     nextCharacter: "'",
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 3
+    file: './tests/fixtures/src-files/js-component.js',
+    line: 2
   },
   {
-    path: 'header.title2',
-    previousCharacter: "'",
-    nextCharacter: "'",
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 4
-  },
-  {
-    path: 'content.paragraph.p_1',
-    previousCharacter: '"',
-    nextCharacter: '"',
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 5
-  },
-  {
-    path: 'Key used as default translation. Second sentence.',
-    previousCharacter: "'",
-    nextCharacter: "'",
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 6
-  },
-  {
-    path: 'content.paragraph.p.2',
+    path: 'dynamic_${object?.code?.toUpperCase()}_key',
     previousCharacter: '`',
     nextCharacter: '`',
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 7
-  },
-  {
-    path: 'content.link.b',
-    previousCharacter: "'",
-    nextCharacter: "'",
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 9
-  },
-  {
-    path: 'content.link.b',
-    previousCharacter: "'",
-    nextCharacter: "'",
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 12
-  },
-  {
-    path: 'content.link.b',
-    previousCharacter: "'",
-    nextCharacter: "'",
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 15
+    file: './tests/fixtures/src-files/js-component.js',
+    line: 2
   },
   {
     path: 'header.title',
     previousCharacter: "'",
     nextCharacter: "'",
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 18
-  },
-  {
-    path: 'content.img.src_${var}',
-    nextCharacter: '`',
-    previousCharacter: '`',
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 19
-  },
-  {
-    path: 'CONTINENT_NAME_${this.origin.country_code}',
-    nextCharacter: '`',
-    previousCharacter: '`',
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 20
-  },
-  {
-    path: 'AUTO_bcc_${fieldName.toUpperCase()}_${mode.toUpperCase()}',
-    nextCharacter: '`',
-    previousCharacter: '`',
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 21
-  },
-  {
-    path: 'content.link.a',
-    previousCharacter: '"',
-    nextCharacter: '"',
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 8
-  },
-  {
-    path: 'content.link.a',
-    previousCharacter: '"',
-    nextCharacter: '"',
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 11
-  },
-  {
-    path: 'content.link.a',
-    previousCharacter: '"',
-    nextCharacter: '"',
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 14
+    file: './tests/fixtures/src-files/folder1/folder2/Deep.vue',
+    line: 2
   },
   {
     path: 'header.title',
     previousCharacter: "'",
     nextCharacter: "'",
-    file: './tests/fixtures/src-files/Basic.vue',
-    line: 17
+    file: './tests/fixtures/src-files/folder1/Nested.vue',
+    line: 2
   },
   {
     path: "single \\' quote",
@@ -189,18 +105,18 @@ export const expectedFromParsedSrcFiles = [
     line: 16
   },
   {
-    path: 'header.title',
+    path: 'missing.english',
     previousCharacter: "'",
     nextCharacter: "'",
-    file: './tests/fixtures/src-files/folder1/folder2/Deep.vue',
-    line: 2
+    file: './tests/fixtures/src-files/Missing.vue',
+    line: 3
   },
   {
-    path: 'header.title',
+    path: 'missing.german',
     previousCharacter: "'",
     nextCharacter: "'",
-    file: './tests/fixtures/src-files/folder1/Nested.vue',
-    line: 2
+    file: './tests/fixtures/src-files/Missing.vue',
+    line: 4
   },
   {
     path: 'header.title',
@@ -238,32 +154,116 @@ export const expectedFromParsedSrcFiles = [
     line: 35
   },
   {
-    path: 'header.paragraphs.p_1',
+    path: 'header.title',
     previousCharacter: "'",
     nextCharacter: "'",
-    file: './tests/fixtures/src-files/js-component.js',
-    line: 2
-  },
-  {
-    path: 'dynamic_${object?.code?.toUpperCase()}_key',
-    nextCharacter: '`',
-    previousCharacter: '`',
-    file: './tests/fixtures/src-files/js-component.js',
-    line: 2
-  },
-  {
-    path: 'missing.english',
-    previousCharacter: "'",
-    nextCharacter: "'",
-    file: './tests/fixtures/src-files/Missing.vue',
+    file: './tests/fixtures/src-files/Basic.vue',
     line: 3
   },
   {
-    path: 'missing.german',
+    path: 'header.title2',
     previousCharacter: "'",
     nextCharacter: "'",
-    file: './tests/fixtures/src-files/Missing.vue',
+    file: './tests/fixtures/src-files/Basic.vue',
     line: 4
+  },
+  {
+    path: 'content.paragraph.p_1',
+    previousCharacter: '"',
+    nextCharacter: '"',
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 5
+  },
+  {
+    path: 'Key used as default translation. Second sentence.',
+    previousCharacter: "'",
+    nextCharacter: "'",
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 6
+  },
+  {
+    path: 'content.paragraph.p.2',
+    previousCharacter: '`',
+    nextCharacter: '`',
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 7
+  },
+  {
+    path: 'content.link.b',
+    previousCharacter: "'",
+    nextCharacter: "'",
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 9
+  },
+  {
+    path: 'content.link.b',
+    previousCharacter: "'",
+    nextCharacter: "'",
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 12
+  },
+  {
+    path: 'content.link.b',
+    previousCharacter: "'",
+    nextCharacter: "'",
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 15
+  },
+  {
+    path: 'header.title',
+    previousCharacter: "'",
+    nextCharacter: "'",
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 18
+  },
+  {
+    path: 'content.img.src_${var}',
+    previousCharacter: '`',
+    nextCharacter: '`',
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 19
+  },
+  {
+    path: 'CONTINENT_NAME_${this.origin.country_code}',
+    previousCharacter: '`',
+    nextCharacter: '`',
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 20
+  },
+  {
+    path: 'AUTO_bcc_${fieldName.toUpperCase()}_${mode.toUpperCase()}',
+    previousCharacter: '`',
+    nextCharacter: '`',
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 21
+  },
+  {
+    path: 'content.link.a',
+    previousCharacter: '"',
+    nextCharacter: '"',
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 8
+  },
+  {
+    path: 'content.link.a',
+    previousCharacter: '"',
+    nextCharacter: '"',
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 11
+  },
+  {
+    path: 'content.link.a',
+    previousCharacter: '"',
+    nextCharacter: '"',
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 14
+  },
+  {
+    path: 'header.title',
+    previousCharacter: "'",
+    nextCharacter: "'",
+    file: './tests/fixtures/src-files/Basic.vue',
+    line: 17
   }
 ];
 
@@ -392,6 +392,12 @@ export const expectedFromParsedLanguageFiles = {
 export const expectedI18NReport = {
   missingKeys: [
     {
+      path: 'header.paragraphs.p_1',
+      file: './tests/fixtures/src-files/js-component.js',
+      line: 2,
+      language: 'de_DE'
+    },
+    {
       path: "single \\' quote",
       file: './tests/fixtures/src-files/edge-cases.js',
       line: 2,
@@ -449,12 +455,6 @@ export const expectedI18NReport = {
       path: 'leading tab',
       file: './tests/fixtures/src-files/edge-cases.js',
       line: 13,
-      language: 'de_DE'
-    },
-    {
-      path: 'header.paragraphs.p_1',
-      file: './tests/fixtures/src-files/js-component.js',
-      line: 2,
       language: 'de_DE'
     },
     {
@@ -464,6 +464,12 @@ export const expectedI18NReport = {
       language: 'de_DE'
     },
     {
+      path: 'header.paragraphs.p_1',
+      file: './tests/fixtures/src-files/js-component.js',
+      line: 2,
+      language: 'en_EN'
+    },
+    {
       path: "single \\' quote",
       file: './tests/fixtures/src-files/edge-cases.js',
       line: 2,
@@ -521,12 +527,6 @@ export const expectedI18NReport = {
       path: 'leading tab',
       file: './tests/fixtures/src-files/edge-cases.js',
       line: 13,
-      language: 'en_EN'
-    },
-    {
-      path: 'header.paragraphs.p_1',
-      file: './tests/fixtures/src-files/js-component.js',
-      line: 2,
       language: 'en_EN'
     },
     {
@@ -558,6 +558,16 @@ export const expectedI18NReport = {
   ],
   maybeDynamicKeys: [
     {
+      path: 'dynamic_${object?.code?.toUpperCase()}_key',
+      file: './tests/fixtures/src-files/js-component.js',
+      line: 2
+    },
+    {
+      path: '${dynamicKey}',
+      file: './tests/fixtures/src-files/edge-cases.js',
+      line: 16
+    },
+    {
       path: 'content.img.src_${var}',
       file: './tests/fixtures/src-files/Basic.vue',
       line: 19
@@ -571,16 +581,6 @@ export const expectedI18NReport = {
       path: 'AUTO_bcc_${fieldName.toUpperCase()}_${mode.toUpperCase()}',
       file: './tests/fixtures/src-files/Basic.vue',
       line: 21
-    },
-    {
-      path: '${dynamicKey}',
-      file: './tests/fixtures/src-files/edge-cases.js',
-      line: 16
-    },
-    {
-      path: 'dynamic_${object?.code?.toUpperCase()}_key',
-      file: './tests/fixtures/src-files/js-component.js',
-      line: 2
     }
   ]
 };

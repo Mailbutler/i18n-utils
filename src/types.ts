@@ -1,6 +1,6 @@
 export type ReportOptions = {
-  srcFiles: string;
-  languageFiles: string;
+  srcFiles: string | string[];
+  languageFiles: string | string[];
   output?: string;
   add?: boolean;
   remove?: boolean;

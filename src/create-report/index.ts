@@ -26,8 +26,10 @@ export async function createI18NReport(options: ReportOptions): Promise<I18NRepo
   if (!languageFilesGlob) throw new Error('Required configuration languageFiles is missing.');
 
   const dot = typeof separator === 'string' ? new Dot(separator) : Dot;
-  const srcFiles = readSrcFiles(path.resolve(process.cwd(), srcFilesGlob));
-  const languageFiles = readLanguageFiles(path.resolve(process.cwd(), languageFilesGlob));
+  const srcFilesGlobs = !Array.isArray(srcFilesGlob) ? [srcFilesGlob] : srcFilesGlob;
+  const srcFiles = readSrcFiles(srcFilesGlobs.map((glob) => path.resolve(process.cwd(), glob)));
+  const languageFilesGlobs = !Array.isArray(languageFilesGlob) ? [languageFilesGlob] : languageFilesGlob;
+  const languageFiles = readLanguageFiles(languageFilesGlobs.map((glob) => path.resolve(process.cwd(), glob)));
 
   const I18NItems = extractI18NItemsFromSrcFiles(srcFiles);
   const I18NLanguage = extractI18NLanguageFromLanguageFiles(languageFiles, dot);
