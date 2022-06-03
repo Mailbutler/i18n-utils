@@ -33,9 +33,10 @@ describe('file: create-report/index', () => {
     expect(consoleWarnSpy).toHaveBeenCalledWith(
       "\nSuspected Dynamic Keys Found\ni18n-utils is extra cautious and won't consider any matching key as 'unused'."
     );
-    expect(consoleTableSpy).toHaveBeenCalledTimes(3);
+    expect(consoleTableSpy).toHaveBeenCalledTimes(4);
     expect(consoleTableSpy.mock.calls[0][0]).toEqual(expectedI18NReport.missingKeys);
     expect(consoleTableSpy.mock.calls[1][0]).toEqual(expectedI18NReport.unusedKeys);
+    expect(consoleTableSpy.mock.calls[2][0]).toEqual(expectedI18NReport.duplicatedKeys);
   });
 
   it('Write report to file at output path', async () => {

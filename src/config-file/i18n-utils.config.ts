@@ -7,5 +7,6 @@ export default {
   remove: false,
   normalize: false,
   ci: false,
-  separator: '.'
+  separator: '.',
+  detectDuplicates: false
 };

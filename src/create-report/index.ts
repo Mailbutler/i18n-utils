@@ -19,7 +19,8 @@ export async function createI18NReport(options: ReportOptions): Promise<I18NRepo
     remove,
     normalize,
     ci,
-    separator
+    separator,
+    detectDuplicates
   } = options;
 
   if (!srcFilesGlob) throw new Error('Required configuration srcFiles is missing.');
@@ -38,6 +39,7 @@ export async function createI18NReport(options: ReportOptions): Promise<I18NRepo
 
   if (report.missingKeys.length) console.info('\nMissing Keys'), console.table(report.missingKeys);
   if (report.unusedKeys.length) console.info('\nUnused Keys'), console.table(report.unusedKeys);
+  if (report.duplicatedKeys.length) console.info('\nDuplicated Keys'), console.table(report.duplicatedKeys);
   if (report.maybeDynamicKeys.length)
     console.warn(
       "\nSuspected Dynamic Keys Found\ni18n-utils is extra cautious and won't consider any matching key as 'unused'."
@@ -64,6 +66,10 @@ export async function createI18NReport(options: ReportOptions): Promise<I18NRepo
 
   if (ci && report.unusedKeys.length) {
     throw new Error(`${report.unusedKeys.length} unused keys found.`);
+  }
+
+  if (detectDuplicates && report.duplicatedKeys.length) {
+    throw new Error(`${report.duplicatedKeys.length} duplicated keys found.`);
   }
 
   return report;

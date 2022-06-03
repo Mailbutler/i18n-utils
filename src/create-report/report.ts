@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { I18NItem, I18NItemWithBounding, I18NLanguage, I18NReport } from '../types';
+import { I18NDuplicatedItem, I18NItem, I18NItemWithBounding, I18NLanguage, I18NReport } from '../types';
 
 function stripBounding(item: I18NItemWithBounding): I18NItem {
   return {
@@ -23,6 +23,7 @@ function dynamicRegex(item: I18NItem): RegExp {
 export function extractI18NReport(i18nItems: I18NItemWithBounding[], languageFiles: I18NLanguage): I18NReport {
   const missingKeys: I18NItem[] = [];
   const unusedKeys: I18NItem[] = [];
+  const duplicatedKeys: I18NDuplicatedItem[] = [];
 
   const maybeDynamicKeys: I18NItem[] = i18nItems
     .filter((item) => mightBeDynamic(item))
@@ -32,6 +33,21 @@ export function extractI18NReport(i18nItems: I18NItemWithBounding[], languageFil
 
   Object.keys(languageFiles).forEach((language) => {
     const languageItems = languageFiles[language];
+
+    const duplicatedKeysInLanguage = languageItems.reduce((acc, languageItem) => {
+      if (acc.find((item) => item.path === languageItem.path)) return acc;
+
+      const duplicates = languageItems.filter((item) => item.path === languageItem.path);
+      if (duplicates.length > 1) {
+        acc.push({
+          path: languageItem.path,
+          files: duplicates.map(({ file }) => file ?? 'unknown'),
+          language
+        });
+      }
+
+      return acc;
+    }, [] as { path: string; files: string[]; language: string }[]);
 
     const missingKeysInLanguage = i18nItems
       .filter((item) => !mightBeDynamic(item))
@@ -48,11 +64,13 @@ export function extractI18NReport(i18nItems: I18NItemWithBounding[], languageFil
 
     missingKeys.push(...missingKeysInLanguage);
     unusedKeys.push(...unusedKeysInLanguage);
+    duplicatedKeys.push(...duplicatedKeysInLanguage);
   });
 
   return {
     missingKeys,
     unusedKeys,
+    duplicatedKeys,
     maybeDynamicKeys
   };
 }
