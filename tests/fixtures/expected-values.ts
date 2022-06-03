@@ -310,6 +310,11 @@ export const expectedFromParsedLanguageFiles = {
       line: 7
     },
     {
+      path: 'duplicated_key',
+      file: './tests/fixtures/lang/de_DE.js',
+      line: 8
+    },
+    {
       path: 'content.paragraph.p_1',
       file: './tests/fixtures/lang/de_DE.yaml',
       line: 0
@@ -318,6 +323,11 @@ export const expectedFromParsedLanguageFiles = {
       path: 'unused_yaml',
       file: './tests/fixtures/lang/de_DE.yaml',
       line: 1
+    },
+    {
+      path: 'duplicated_key',
+      file: './tests/fixtures/lang/de_DE.yaml',
+      line: 2
     }
   ],
   en_EN: [
@@ -544,9 +554,21 @@ export const expectedI18NReport = {
       language: 'de_DE'
     },
     {
+      path: 'duplicated_key',
+      file: './tests/fixtures/lang/de_DE.js',
+      line: 8,
+      language: 'de_DE'
+    },
+    {
       path: 'unused_yaml',
       file: './tests/fixtures/lang/de_DE.yaml',
       line: 1,
+      language: 'de_DE'
+    },
+    {
+      path: 'duplicated_key',
+      file: './tests/fixtures/lang/de_DE.yaml',
+      line: 2,
       language: 'de_DE'
     },
     {
@@ -554,6 +576,13 @@ export const expectedI18NReport = {
       file: './tests/fixtures/lang/en_EN.json',
       line: 9,
       language: 'en_EN'
+    }
+  ],
+  duplicatedKeys: [
+    {
+      path: 'duplicated_key',
+      files: ['./tests/fixtures/lang/de_DE.js', './tests/fixtures/lang/de_DE.yaml'],
+      language: 'de_DE'
     }
   ],
   maybeDynamicKeys: [

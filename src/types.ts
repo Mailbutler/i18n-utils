@@ -7,6 +7,7 @@ export type ReportOptions = {
   normalize?: boolean;
   ci?: boolean;
   separator?: string;
+  detectDuplicates?: boolean;
 };
 
 export type SimpleFile = {
@@ -22,6 +23,12 @@ export type I18NItem = {
   language?: string;
 };
 
+export type I18NDuplicatedItem = {
+  path: string;
+  language: string;
+  files: string[];
+};
+
 export type I18NItemWithBounding = I18NItem & {
   previousCharacter: string;
   nextCharacter: string;
@@ -34,5 +41,6 @@ export type I18NLanguage = {
 export type I18NReport = {
   missingKeys: I18NItem[];
   unusedKeys: I18NItem[];
+  duplicatedKeys: I18NDuplicatedItem[];
   maybeDynamicKeys: I18NItem[];
 };

@@ -2,3 +2,4 @@ content:
   paragraph:
     p_1: Clicked {count} times
 unused_yaml: unused
+duplicated_key: 'This key is also declared in the js file'

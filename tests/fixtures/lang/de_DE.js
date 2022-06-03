@@ -16,5 +16,6 @@ module.exports = {
   missing: {
     english: 'Missing!'
   },
-  unused_js: 'This key is unused.'
+  unused_js: 'This key is unused.',
+  duplicated_key: 'This key is also declared in the yaml file'
 };
